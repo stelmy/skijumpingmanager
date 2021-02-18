@@ -1,0 +1,2 @@
+# skijumpingmanager
+Ski jumping manager
