@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 @Data
 @Builder
-public class CompetitionJumperRoundNote {
+public class JumpNote {
     private BigDecimal distanceNote;
     private BigDecimal juryNote;
     private BigDecimal additionalNote;

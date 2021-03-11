@@ -1,29 +1,48 @@
 package com.stelmyit.skijumping.competition.calculator.service;
 
 import com.stelmyit.skijumping.competition.calculator.dto.CompetitionJumperRoundResultDTO;
-import com.stelmyit.skijumping.competition.calculator.model.CompetitionJumperNote;
-import com.stelmyit.skijumping.competition.calculator.model.CompetitionJumperRoundNote;
+import com.stelmyit.skijumping.competition.calculator.model.JumpNote;
+import com.stelmyit.skijumping.competition.calculator.service.decorator.DistanceNoteDecorator;
+import com.stelmyit.skijumping.competition.calculator.service.decorator.JuryNoteDecorator;
+import com.stelmyit.skijumping.competition.calculator.service.decorator.NoteDecorator;
+import com.stelmyit.skijumping.competition.calculator.service.decorator.NoteImpl;
+import com.stelmyit.skijumping.competition.calculator.service.distance.DistanceService;
+import com.stelmyit.skijumping.competition.calculator.service.jurynotes.JuryNotesService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
+import java.util.List;
 
 @Service
 public class CompetitionJumperNoteService {
 
-    public CompetitionJumperNote calculate(CompetitionJumperRoundResultDTO body) {
-        System.out.println(body);
-        return CompetitionJumperNote.builder()
-            .roundNotes(
-                Arrays.asList(
-                    CompetitionJumperRoundNote.builder()
-                        .distanceNote(BigDecimal.valueOf(150))
-                        .build(),
-                    CompetitionJumperRoundNote.builder()
-                        .distanceNote(BigDecimal.valueOf(148.5))
-                        .build()
-                )
-            )
+    @Autowired
+    private DistanceService distanceService;
+
+    @Autowired
+    private JuryNotesService juryNotesService;
+
+    public JumpNote calculate(final CompetitionJumperRoundResultDTO body) {
+        NoteDecorator note = new NoteDecorator(new NoteImpl());
+        note = decorateWithDistancePoints(note, body.getDistance());
+        note = decorateWithJuryPoints(note, body.getJuryNotes());
+
+        return JumpNote.builder()
+            .distanceNote(note.calculateDistancePoints())
+            .juryNote(note.calculateJuryPoints())
+            .additionalNote(note.calculateAdditionPoints())
+            .totalNote(note.calculateTotalPoints())
             .build();
+   }
+
+   private NoteDecorator decorateWithDistancePoints(final NoteDecorator note, final BigDecimal distance) {
+       final BigDecimal distancePoints = distanceService.calculate(distance);
+       return new DistanceNoteDecorator(note, distancePoints);
+   }
+
+    private NoteDecorator decorateWithJuryPoints(final NoteDecorator note, final List<BigDecimal> juryNotes) {
+        final BigDecimal juryNote = juryNotesService.calculate(juryNotes);
+        return new JuryNoteDecorator(note, juryNote);
     }
 }

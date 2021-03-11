@@ -1,30 +1,28 @@
 package com.stelmyit.skijumping.competition.calculator.service.decorator;
 
-import lombok.AllArgsConstructor;
-
 import java.math.BigDecimal;
 
-@AllArgsConstructor
-public class NoteDecorator implements Note {
-    private Note note;
+import static java.math.BigDecimal.ZERO;
+
+public class NoteImpl implements Note {
 
     @Override
     public BigDecimal calculateTotalPoints() {
-        return note.calculateTotalPoints();
+        return ZERO;
     }
 
     @Override
     public BigDecimal calculateDistancePoints() {
-        return note.calculateDistancePoints();
+        return ZERO;
     }
 
     @Override
     public BigDecimal calculateJuryPoints() {
-        return note.calculateJuryPoints();
+        return ZERO;
     }
 
     @Override
     public BigDecimal calculateAdditionPoints() {
-        return note.calculateAdditionPoints();
+        return ZERO;
     }
 }
