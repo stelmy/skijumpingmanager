@@ -1,0 +1,32 @@
+GET http://localhost:8080/competition/1/jumper/1
+%%%
+
+# Duration: 25 ms
+# URL: http://localhost:8080/competition/1/jumper/1
+
+# HTTP/1.1 200
+
+@Content-Type: application/json
+@Transfer-Encoding: chunked
+@Date: Wed, 03 Mar 2021 03:02:13 GMT
+@Keep-Alive: timeout=60
+@Connection: keep-alive
+
+{
+  "jumperId": null,
+  "roundNotes": [
+    {
+      "distanceNote": 150,
+      "juryNote": null,
+      "additionalNote": null,
+      "totalNote": null
+    },
+    {
+      "distanceNote": 148.5,
+      "juryNote": null,
+      "additionalNote": null,
+      "totalNote": null
+    }
+  ],
+  "totalNote": null
+}
