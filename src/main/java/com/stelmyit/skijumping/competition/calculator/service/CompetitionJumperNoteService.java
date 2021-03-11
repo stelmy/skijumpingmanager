@@ -25,7 +25,7 @@ public class CompetitionJumperNoteService {
 
     public JumpNote calculate(final CompetitionJumperRoundResultDTO body) {
         NoteDecorator note = new NoteDecorator(new NoteImpl());
-        note = decorateWithDistancePoints(note, body.getDistance());
+        note = decorateWithDistancePoints(note, body.getDistance(), body.getKPoint());
         note = decorateWithJuryPoints(note, body.getJuryNotes());
 
         return JumpNote.builder()
@@ -36,8 +36,8 @@ public class CompetitionJumperNoteService {
             .build();
    }
 
-   private NoteDecorator decorateWithDistancePoints(final NoteDecorator note, final BigDecimal distance) {
-       final BigDecimal distancePoints = distanceService.calculate(distance);
+   private NoteDecorator decorateWithDistancePoints(final NoteDecorator note, final BigDecimal distance, final int kPoint) {
+       final BigDecimal distancePoints = distanceService.calculate(distance, kPoint);
        return new DistanceNoteDecorator(note, distancePoints);
    }
 

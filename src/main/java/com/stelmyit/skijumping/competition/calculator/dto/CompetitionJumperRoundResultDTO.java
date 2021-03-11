@@ -7,6 +7,7 @@ import java.util.List;
 
 @Data
 public class CompetitionJumperRoundResultDTO {
+    private int kPoint;
     private BigDecimal distance;
     private int gate;
     private int windSpeed;

@@ -1,5 +1,6 @@
 package com.stelmyit.skijumping.competition.calculator.service.distance;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -7,7 +8,12 @@ import java.math.BigDecimal;
 @Service
 public class DistanceService {
 
-    public BigDecimal calculate(final BigDecimal distance) {
-        return (BigDecimal.valueOf(120).add(distance.subtract(BigDecimal.valueOf(120)).multiply(BigDecimal.valueOf(1.8))));
+    @Autowired
+    private DistanceHillValueService distanceHillValueService;
+
+    public BigDecimal calculate(final BigDecimal distance, final int kPoint) {
+        final BigDecimal baseDistanceValue = distanceHillValueService.getBaseDistancePoints(kPoint);
+        final BigDecimal distanceMeterValue = distanceHillValueService.getMeterValue(kPoint);
+        return (baseDistanceValue.add(distance.subtract(BigDecimal.valueOf(kPoint)).multiply(distanceMeterValue)));
     }
 }
