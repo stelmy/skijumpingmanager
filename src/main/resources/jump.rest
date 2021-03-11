@@ -11,14 +11,14 @@ POST http://localhost:8080/competition/calculate
 
 %%%
 
-# Duration: 18048 ms
+# Duration: 335 ms
 # URL: http://localhost:8080/competition/calculate
 
 # HTTP/1.1 200
 
 @Content-Type: application/json
 @Transfer-Encoding: chunked
-@Date: Thu, 11 Mar 2021 21:49:52 GMT
+@Date: Thu, 11 Mar 2021 22:14:25 GMT
 @Keep-Alive: timeout=60
 @Connection: keep-alive
 

@@ -14,8 +14,12 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @RequestMapping("competition")
 public class CompetitionCalculatorController {
 
-    @Autowired
     private CompetitionJumperNoteService competitionJumperNoteService;
+
+    @Autowired
+    public CompetitionCalculatorController(CompetitionJumperNoteService competitionJumperNoteService) {
+        this.competitionJumperNoteService = competitionJumperNoteService;
+    }
 
     @RequestMapping(value = "/calculate", method = POST)
     public JumpNote calculate(@RequestBody CompetitionJumperRoundResultDTO body) {

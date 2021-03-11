@@ -17,11 +17,14 @@ import java.util.List;
 @Service
 public class CompetitionJumperNoteService {
 
-    @Autowired
     private DistanceService distanceService;
+    private JuryNotesService juryNotesService;
 
     @Autowired
-    private JuryNotesService juryNotesService;
+    public CompetitionJumperNoteService(DistanceService distanceService, JuryNotesService juryNotesService) {
+        this.distanceService = distanceService;
+        this.juryNotesService = juryNotesService;
+    }
 
     public JumpNote calculate(final CompetitionJumperRoundResultDTO body) {
         NoteDecorator note = new NoteDecorator(new NoteImpl());
