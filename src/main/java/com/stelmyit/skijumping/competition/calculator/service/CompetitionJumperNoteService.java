@@ -25,7 +25,7 @@ public class CompetitionJumperNoteService {
 
     public JumpNote calculate(final CompetitionJumperRoundResultDTO body) {
         NoteDecorator note = new NoteDecorator(new NoteImpl());
-        note = decorateWithDistancePoints(note, body.getDistance(), body.getKPoint());
+        note = decorateWithDistancePoints(note, body.getDistance(), body.getKpoint());
         note = decorateWithJuryPoints(note, body.getJuryNotes());
 
         return JumpNote.builder()
