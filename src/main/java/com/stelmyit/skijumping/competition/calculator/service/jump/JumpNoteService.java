@@ -51,7 +51,7 @@ public class JumpNoteService {
         return calculateJumpNoteWithComposition(jump, composition);
     }
 
-    public JumpNote calculateJumpNoteWithComposition(final Jump jump, final JumpNoteComposition composition) {
+    private JumpNote calculateJumpNoteWithComposition(final Jump jump, final JumpNoteComposition composition) {
         NoteDecorator note = new NoteDecorator(new NoteImpl());
         note = decorateWithDistancePoints(note, jump.getDistance(), jump.getKpoint());
 
