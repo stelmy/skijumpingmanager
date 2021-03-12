@@ -1,4 +1,4 @@
-package com.stelmyit.skijumping.competition.calculator.service.decorator;
+package com.stelmyit.skijumping.competition.calculator.decorator;
 
 import java.math.BigDecimal;
 
@@ -22,7 +22,7 @@ public class NoteImpl implements Note {
     }
 
     @Override
-    public BigDecimal calculateAdditionPoints() {
+    public BigDecimal calculateAdditionalPoints() {
         return ZERO;
     }
 }

@@ -1,4 +1,4 @@
-package com.stelmyit.skijumping.competition.calculator.service.decorator;
+package com.stelmyit.skijumping.competition.calculator.decorator;
 
 import lombok.AllArgsConstructor;
 
@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 
 @AllArgsConstructor
 public class NoteDecorator implements Note {
-    private Note note;
+    private final Note note;
 
     @Override
     public BigDecimal calculateTotalPoints() {
@@ -24,7 +24,7 @@ public class NoteDecorator implements Note {
     }
 
     @Override
-    public BigDecimal calculateAdditionPoints() {
-        return note.calculateAdditionPoints();
+    public BigDecimal calculateAdditionalPoints() {
+        return note.calculateAdditionalPoints();
     }
 }

@@ -1,9 +1,9 @@
-package com.stelmyit.skijumping.competition.calculator.service.decorator;
+package com.stelmyit.skijumping.competition.calculator.decorator;
 
 import java.math.BigDecimal;
 
 public class JuryNoteDecorator extends NoteDecorator {
-    private BigDecimal juryNote;
+    private final BigDecimal juryNote;
 
     public JuryNoteDecorator(final Note note, final BigDecimal juryNote) {
         super(note);

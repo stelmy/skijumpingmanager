@@ -8,41 +8,41 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static java.math.BigDecimal.ZERO;
+import static java.math.RoundingMode.DOWN;
 import static java.util.Optional.ofNullable;
 
 @Service
 public class JuryNotesService {
     private static final int NUMBER_OF_NOTES = 5;
-    private static final BigDecimal MAX_NOTE = BigDecimal.valueOf(20);
-    private static final BigDecimal MIN_NOTE = ZERO;
+    private static final float MAX_NOTE = 20f;
+    private static final float MIN_NOTE = 0f;
 
-    public BigDecimal calculate(final List<BigDecimal> juryNotesToCalculate) {
-        final List<BigDecimal> juryNotes = ofNullable(juryNotesToCalculate).orElse(new ArrayList<>());
+    public BigDecimal calculate(final List<Float> juryNotesToCalculate) {
+        final List<Float> juryNotes = ofNullable(juryNotesToCalculate).orElse(new ArrayList<>());
         if (!isNotesAmountCorrect(juryNotes)) {
             throw new IncorrectJuryNotesAmountException(juryNotes.size());
         }
 
-        final BigDecimal noteSum = getNoteSum(juryNotes);
-        final BigDecimal max = getMaxNote(juryNotes);
-        final BigDecimal min = getMinNote(juryNotes);
-        return noteSum.subtract(min).subtract(max);
+        final float noteSum = getNoteSum(juryNotes);
+        final float max = getMaxNote(juryNotes);
+        final float min = getMinNote(juryNotes);
+        return BigDecimal.valueOf(noteSum - max - min).setScale(1, DOWN);
     }
 
-    private boolean isNotesAmountCorrect(final List<BigDecimal> juryNotes) {
+    private boolean isNotesAmountCorrect(final List<Float> juryNotes) {
         return juryNotes.size() == NUMBER_OF_NOTES;
     }
 
-    private BigDecimal getNoteSum(final List<BigDecimal> juryNotes) {
-        return juryNotes.stream().reduce(ZERO, BigDecimal::add);
+    private float getNoteSum(final List<Float> juryNotes) {
+        return juryNotes.stream().reduce(0f, Float::sum);
     }
 
-    private BigDecimal getMaxNote(final List<BigDecimal> juryNotes) {
-        return Optional.of(juryNotes.stream().max(BigDecimal::compareTo)).get().orElse(MAX_NOTE);
+    private float getMaxNote(final List<Float> juryNotes) {
+        return Optional.of(juryNotes.stream().max(Float::compareTo)).get().orElse(MAX_NOTE);
     }
 
-    private BigDecimal getMinNote(final List<BigDecimal> juryNotes) {
-        return Optional.of(juryNotes.stream().min(BigDecimal::compareTo)).get().orElse(MIN_NOTE);
+    private float getMinNote(final List<Float> juryNotes) {
+        return Optional.of(juryNotes.stream().min(Float::compareTo)).get().orElse(MIN_NOTE);
     }
 
 }

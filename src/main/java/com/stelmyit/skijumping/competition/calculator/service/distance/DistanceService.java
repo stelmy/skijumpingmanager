@@ -5,15 +5,22 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 
+import static java.math.RoundingMode.DOWN;
+
 @Service
 public class DistanceService {
 
-    @Autowired
-    private DistanceHillValueService distanceHillValueService;
+    private final DistanceHillValueService distanceHillValueService;
 
-    public BigDecimal calculate(final BigDecimal distance, final int kPoint) {
-        final BigDecimal baseDistanceValue = distanceHillValueService.getBaseDistancePoints(kPoint);
-        final BigDecimal distanceMeterValue = distanceHillValueService.getMeterValue(kPoint);
-        return (baseDistanceValue.add(distance.subtract(BigDecimal.valueOf(kPoint)).multiply(distanceMeterValue)));
+    @Autowired
+    public DistanceService(DistanceHillValueService distanceHillValueService) {
+        this.distanceHillValueService = distanceHillValueService;
+    }
+
+    public BigDecimal calculate(final float distance, final int kPoint) {
+        final int baseDistanceValue = distanceHillValueService.getBaseDistancePoints(kPoint);
+        final float distanceMeterValue = distanceHillValueService.getMeterValue(kPoint);
+        final float result = baseDistanceValue + (distance - kPoint) * distanceMeterValue;
+        return BigDecimal.valueOf(result).setScale(1, DOWN);
     }
 }

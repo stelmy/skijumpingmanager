@@ -1,2 +1,5 @@
-# skijumpingmanager
-Ski jumping manager
+# Aplikacja do obliczania punktacji w skokach narciarskich
+
+## Uruchomienie aplikacji
+1. Uruchamiamy z poziomu IntelliJ SkijumpingApplication.java
+2. W folderze resources znajdują się pliki *.rest umożliwiające testowanie

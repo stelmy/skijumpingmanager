@@ -1,9 +1,9 @@
-package com.stelmyit.skijumping.competition.calculator.service.decorator;
+package com.stelmyit.skijumping.competition.calculator.decorator;
 
 import java.math.BigDecimal;
 
 public class DistanceNoteDecorator extends NoteDecorator {
-    private BigDecimal distancePoints;
+    private final BigDecimal distancePoints;
 
     public DistanceNoteDecorator(final Note note, final BigDecimal distancePoints) {
         super(note);

@@ -7,7 +7,6 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.math.BigDecimal;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -19,16 +18,12 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 public class JuryNotesServiceTest {
 
-    private static final BigDecimal _10 = BigDecimal.valueOf(10);
-    private static final BigDecimal _15 = BigDecimal.valueOf(15);
-    private static final BigDecimal _20 = BigDecimal.valueOf(20);
-
     private final JuryNotesService uut = new JuryNotesService();
 
     @Test
     public void shouldThrowExceptionIfTooLessNotes() {
         // given
-        final List<BigDecimal> juryNotes = asList(_10, _15);
+        final List<Float> juryNotes = asList(10f, 15f);
 
         // when
         try {
@@ -42,7 +37,7 @@ public class JuryNotesServiceTest {
     @Test
     public void shouldThrowExceptionIfTooManyNotes() {
         // given
-        final List<BigDecimal> juryNotes = asList(_10, _15, _15, _15, _15, _15);
+        final List<Float> juryNotes = asList(10f, 15f, 15f, 15f, 15f, 15f);
 
         // when
         try {
@@ -56,7 +51,7 @@ public class JuryNotesServiceTest {
     @Test
     public void shouldThrowExceptionIfZeroNotes() {
         // given
-        final List<BigDecimal> juryNotes = emptyList();
+        final List<Float> juryNotes = emptyList();
 
         // when
         try {
@@ -69,12 +64,9 @@ public class JuryNotesServiceTest {
 
     @Test
     public void shouldThrowExceptionIfNullNotes() {
-        // given
-        final List<BigDecimal> juryNotes = null;
-
         // when
         try {
-            uut.calculate(juryNotes);
+            uut.calculate(null);
         } catch (IncorrectJuryNotesAmountException exception) {
             assertThat(exception.getMessage())
                 .isEqualTo("Incorrect jury notes amount. There should be exactly 5 notes, but 0 found.");
@@ -83,7 +75,7 @@ public class JuryNotesServiceTest {
 
     @ParameterizedTest
     @MethodSource("testData")
-    public void shouldCalculateJuryNotes(List<BigDecimal> juryNotes, BigDecimal totalNote) {
+    public void shouldCalculateJuryNotes(List<Float> juryNotes, BigDecimal totalNote) {
         // when
         final BigDecimal result = uut.calculate(juryNotes);
 
@@ -93,11 +85,11 @@ public class JuryNotesServiceTest {
 
     private static Stream<Arguments> testData() {
         return of(
-            arguments(asList(_15, _15, _15, _15, _15), BigDecimal.valueOf(45)),
-            arguments(asList(_10, _15, _15, _15, _15), BigDecimal.valueOf(45)),
-            arguments(asList(_10, _15, _15, _15, _20), BigDecimal.valueOf(45)),
-            arguments(asList(_10, _10, _10, _10, _10), BigDecimal.valueOf(30)),
-            arguments(asList(_20, _20, _20, _20, _20), BigDecimal.valueOf(60))
+            arguments(asList(15f, 15f, 15f, 15f, 15f), BigDecimal.valueOf(45.0)),
+            arguments(asList(10f, 15f, 15f, 15f, 15f), BigDecimal.valueOf(45.0)),
+            arguments(asList(10f, 15f, 15f, 15f, 20f), BigDecimal.valueOf(45.0)),
+            arguments(asList(10f, 10f, 10f, 10f, 10f), BigDecimal.valueOf(30.0)),
+            arguments(asList(20f, 20f, 20f, 20f, 20f), BigDecimal.valueOf(60.0))
         );
     }
 }
