@@ -2,9 +2,7 @@ POST http://localhost:8080/jump/official
 @Content-Type: application/json
 
 {
-  "baseGate": 12,
-  "hillSize": 140,
-  "kpoint": 125,
+  "competitionId": 1,
   "distance": 136.5,
   "juryNotes": [18.5, 17, 18, 18, 18.5],
   "gate": 10,
@@ -13,20 +11,20 @@ POST http://localhost:8080/jump/official
 
 %%%
 
-# Duration: 292 ms
+# Duration: 375 ms
 # URL: http://localhost:8080/jump/official
 
 # HTTP/1.1 200
 
 @Content-Type: application/json
 @Transfer-Encoding: chunked
-@Date: Fri, 12 Mar 2021 06:47:10 GMT
+@Date: Sun, 14 Mar 2021 19:03:38 GMT
 @Keep-Alive: timeout=60
 @Connection: keep-alive
 
 {
   "distanceNote": 80.6,
   "juryNote": 54.5,
-  "additionalNote": 1.8,
-  "totalNote": 129.7
+  "additionalNote": -7.2,
+  "totalNote": 120.7
 }

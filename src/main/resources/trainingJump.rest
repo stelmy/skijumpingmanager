@@ -2,9 +2,7 @@ POST http://localhost:8080/jump/training
 @Content-Type: application/json
 
 {
-  "baseGate": 12,
-  "hillSize": 140,
-  "kpoint": 125,
+  "competitionId": 1,
   "distance": 136.5,
   "juryNotes": [18.5, 17, 18, 18, 18.5],
   "gate": 10,
