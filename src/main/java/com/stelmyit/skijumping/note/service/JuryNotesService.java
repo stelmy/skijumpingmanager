@@ -1,12 +1,15 @@
 package com.stelmyit.skijumping.note.service;
 
 import com.stelmyit.skijumping.common.exception.IncorrectJuryNotesAmountException;
+import com.stelmyit.skijumping.jump.model.Jump;
+import com.stelmyit.skijumping.juryNote.model.JuryNote;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static java.math.RoundingMode.DOWN;
 import static java.util.Optional.ofNullable;
@@ -17,8 +20,11 @@ public class JuryNotesService {
     private static final float MAX_NOTE = 20f;
     private static final float MIN_NOTE = 0f;
 
-    public BigDecimal calculate(final List<Float> juryNotesToCalculate) {
-        final List<Float> juryNotes = ofNullable(juryNotesToCalculate).orElse(new ArrayList<>());
+    public BigDecimal calculate(final Jump jump) {
+        final List<Float> juryNotes = ofNullable(jump.getJuryNotes()).orElse(new ArrayList<>())
+            .stream()
+            .map(JuryNote::getNote)
+            .collect(Collectors.toList());
         if (!isNotesAmountCorrect(juryNotes)) {
             throw new IncorrectJuryNotesAmountException(juryNotes.size());
         }

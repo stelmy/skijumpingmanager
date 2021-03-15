@@ -1,4 +1,4 @@
-# Aplikacja do obliczania punktacji w skokach narciarskich
+# Aplikacja do zarządzania wynikami w skokach narciarskich
 
 ## Uruchomienie aplikacji
 1. Uruchamiamy z poziomu IntelliJ SkijumpingApplication.java

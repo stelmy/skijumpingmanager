@@ -1,6 +1,8 @@
 package com.stelmyit.skijumping.note.service;
 
 import com.stelmyit.skijumping.common.exception.IncorrectJuryNotesAmountException;
+import com.stelmyit.skijumping.jump.model.Jump;
+import com.stelmyit.skijumping.juryNote.model.JuryNote;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -8,6 +10,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.util.Arrays.asList;
@@ -24,10 +27,11 @@ public class JuryNotesServiceTest {
     public void shouldThrowExceptionIfTooLessNotes() {
         // given
         final List<Float> juryNotes = asList(10f, 15f);
+        final Jump jump = jump(juryNotes);
 
         // when
         try {
-            uut.calculate(juryNotes);
+            uut.calculate(jump);
         } catch (IncorrectJuryNotesAmountException exception) {
             assertThat(exception.getMessage())
                 .isEqualTo("Incorrect jury notes amount. There should be exactly 5 notes, but 2 found.");
@@ -38,10 +42,11 @@ public class JuryNotesServiceTest {
     public void shouldThrowExceptionIfTooManyNotes() {
         // given
         final List<Float> juryNotes = asList(10f, 15f, 15f, 15f, 15f, 15f);
+        final Jump jump = jump(juryNotes);
 
         // when
         try {
-            uut.calculate(juryNotes);
+            uut.calculate(jump);
         } catch (IncorrectJuryNotesAmountException exception) {
             assertThat(exception.getMessage())
                 .isEqualTo("Incorrect jury notes amount. There should be exactly 5 notes, but 6 found.");
@@ -52,10 +57,11 @@ public class JuryNotesServiceTest {
     public void shouldThrowExceptionIfZeroNotes() {
         // given
         final List<Float> juryNotes = emptyList();
+        final Jump jump = jump(juryNotes);
 
         // when
         try {
-            uut.calculate(juryNotes);
+            uut.calculate(jump);
         } catch (IncorrectJuryNotesAmountException exception) {
             assertThat(exception.getMessage())
                 .isEqualTo("Incorrect jury notes amount. There should be exactly 5 notes, but 0 found.");
@@ -64,9 +70,12 @@ public class JuryNotesServiceTest {
 
     @Test
     public void shouldThrowExceptionIfNullNotes() {
+        // given
+        final Jump jump = jump(null);
+
         // when
         try {
-            uut.calculate(null);
+            uut.calculate(jump);
         } catch (IncorrectJuryNotesAmountException exception) {
             assertThat(exception.getMessage())
                 .isEqualTo("Incorrect jury notes amount. There should be exactly 5 notes, but 0 found.");
@@ -76,8 +85,11 @@ public class JuryNotesServiceTest {
     @ParameterizedTest
     @MethodSource("testData")
     public void shouldCalculateJuryNotes(List<Float> juryNotes, BigDecimal totalNote) {
+        // given
+        final Jump jump = jump(juryNotes);
+
         // when
-        final BigDecimal result = uut.calculate(juryNotes);
+        final BigDecimal result = uut.calculate(jump);
 
         // then
         assertThat(result).isEqualTo(totalNote);
@@ -91,5 +103,26 @@ public class JuryNotesServiceTest {
             arguments(asList(10f, 10f, 10f, 10f, 10f), BigDecimal.valueOf(30.0)),
             arguments(asList(20f, 20f, 20f, 20f, 20f), BigDecimal.valueOf(60.0))
         );
+    }
+
+    private static Jump jump(final List<Float> juryNotes) {
+        return Jump.builder()
+            .distance(125F)
+            .juryNotes(juryNotes(juryNotes))
+            .gate(12)
+            .windSpeed(1.5F)
+            .build();
+    }
+
+    private static List<JuryNote> juryNotes(List<Float> juryNotes) {
+        if (juryNotes == null) {
+            return null;
+        }
+
+        return juryNotes.stream()
+            .map(note -> JuryNote.builder()
+                .note(note)
+                .build())
+            .collect(Collectors.toList());
     }
 }

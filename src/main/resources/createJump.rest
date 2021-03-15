@@ -1,0 +1,46 @@
+POST http://localhost:8080/jump
+@Content-Type: application/json
+
+{
+  "competitionRoundId": 1,
+  "distance": 136.5,
+  "juryNotes": [
+    {
+        "judgeId": 1,
+        "note": 18.5
+    },
+    {
+        "judgeId": 2,
+        "note": 18.5
+    },
+    {
+        "judgeId": 3,
+        "note": 18.5
+    },
+    {
+        "judgeId": 4,
+        "note": 18.0
+    },
+    {
+        "judgeId": 5,
+        "note": 18.5
+    }
+  ],
+  "gate": 10,
+  "windSpeed": -1.4
+}
+
+%%%
+
+# Duration: 42 ms
+# URL: http://localhost:8080/jump
+
+# HTTP/1.1 200
+
+@Content-Type: application/json
+@Transfer-Encoding: chunked
+@Date: Mon, 15 Mar 2021 06:37:51 GMT
+@Keep-Alive: timeout=60
+@Connection: keep-alive
+
+2

@@ -1,16 +1,34 @@
 package com.stelmyit.skijumping.jump.model;
 
-import lombok.Builder;
+import com.stelmyit.skijumping.common.model.BaseEntity;
+import com.stelmyit.skijumping.competitionRound.model.CompetitionRound;
+import com.stelmyit.skijumping.juryNote.model.JuryNote;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.Cascade;
 
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import java.util.List;
 
+import static org.hibernate.annotations.CascadeType.ALL;
+
 @Data
-@Builder
-public class Jump {
-    private Long competitionId;
+@EqualsAndHashCode(callSuper = true)
+@SuperBuilder
+@Entity
+public class Jump extends BaseEntity {
+
+    @ManyToOne
+    private CompetitionRound competitionRound;
+
     private float distance;
     private int gate;
     private float windSpeed;
-    private List<Float> juryNotes;
+
+    @OneToMany
+    @Cascade(ALL)
+    private List<JuryNote> juryNotes;
 }

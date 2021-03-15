@@ -3,7 +3,7 @@ package com.stelmyit.skijumping.note.decorator;
 import java.math.BigDecimal;
 
 public class WindCompensationDecorator extends NoteDecorator {
-    private BigDecimal windCompensation;
+    private final BigDecimal windCompensation;
 
     public WindCompensationDecorator(final Note note, final BigDecimal windCompensation) {
         super(note);
