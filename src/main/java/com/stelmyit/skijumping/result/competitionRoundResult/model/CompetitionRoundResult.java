@@ -9,6 +9,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -24,5 +25,8 @@ public class CompetitionRoundResult extends BaseEntity {
     @OneToOne
     @JoinColumn(name = "round_id")
     private CompetitionRound competitionRound;
+
+    @Column(name = "position")
+    private int position;
 
 }

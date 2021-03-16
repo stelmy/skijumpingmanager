@@ -8,8 +8,9 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+
+import static javax.persistence.EnumType.STRING;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -22,7 +23,7 @@ public class CompetitionRound extends BaseEntity {
     private int number;
     private int baseGate;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(STRING)
     private CompetitionRoundType type;
 
 }
