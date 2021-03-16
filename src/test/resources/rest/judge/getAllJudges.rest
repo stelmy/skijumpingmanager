@@ -3,14 +3,14 @@ GET http://localhost:8080/judge
 
 %%%
 
-# Duration: 11840 ms
+# Duration: 250 ms
 # URL: http://localhost:8080/judge
 
 # HTTP/1.1 200
 
 @Content-Type: application/json
 @Transfer-Encoding: chunked
-@Date: Tue, 16 Mar 2021 06:34:44 GMT
+@Date: Tue, 16 Mar 2021 06:42:43 GMT
 @Keep-Alive: timeout=60
 @Connection: keep-alive
 
