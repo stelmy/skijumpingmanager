@@ -1,0 +1,38 @@
+GET http://localhost:8080/judge
+@Content-Type: application/json
+
+%%%
+
+# Duration: 11840 ms
+# URL: http://localhost:8080/judge
+
+# HTTP/1.1 200
+
+@Content-Type: application/json
+@Transfer-Encoding: chunked
+@Date: Tue, 16 Mar 2021 06:34:44 GMT
+@Keep-Alive: timeout=60
+@Connection: keep-alive
+
+[
+  {
+    "firstName": "Jan",
+    "lastName": "Kowalski"
+  },
+  {
+    "firstName": "Jan",
+    "lastName": "Nowak"
+  },
+  {
+    "firstName": "Adam",
+    "lastName": "Kwiatkowski"
+  },
+  {
+    "firstName": "Ryszard",
+    "lastName": "Kot"
+  },
+  {
+    "firstName": "Jacek",
+    "lastName": "Dąbrowski"
+  }
+]
