@@ -8,8 +8,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource
 public interface CompetitionRepository extends JpaRepository<Competition, Long> {
 
-    @Query("SELECT c FROM Competition c " +
-        "LEFT JOIN c.competitionRounds AS cr " +
-        "WHERE cr.id = ?1")
+    @Query("SELECT c FROM Competition c  LEFT JOIN c.competitionRounds AS cr WHERE cr.id = ?1")
     Competition findByRoundId(Long competitionRoundId);
 }

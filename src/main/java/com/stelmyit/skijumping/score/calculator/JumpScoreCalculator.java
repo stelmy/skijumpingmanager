@@ -54,7 +54,7 @@ public class JumpScoreCalculator {
             score = decorateWithJuryPoints(score, jump);
         }
 
-        return jumpScoreFactory.createEntity(score);
+        return jumpScoreFactory.createEntity(score, jump);
     }
 
     private ScoreDecorator decorateWithDistancePoints(final ScoreDecorator score,

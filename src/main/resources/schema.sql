@@ -55,3 +55,26 @@ CREATE TABLE jump_jury_notes (
     jump_id     BIGINT NOT NULL,
     jury_notes_id BIGINT NOT NULL
 );
+
+CREATE TABLE jump_score (
+    id          BIGINT AUTO_INCREMENT PRIMARY KEY,
+    jump_id     BIGINT NOT NULL,
+    distance    DECIMAL NOT NULL,
+    jury        DECIMAL NOT NULL,
+    gate        DECIMAL NOT NULL,
+    wind        DECIMAL NOT NULL,
+    total       DECIMAL NOT NULL
+);
+
+CREATE TABLE competition_round_result
+(
+    id          BIGINT AUTO_INCREMENT PRIMARY KEY,
+    round_id    BIGINT NOT NULL,
+    score_id    BIGINT NOT NULL
+);
+
+CREATE TABLE competition_competition_rounds
+(
+    competition_id  BIGINT NOT NULL,
+    competition_rounds_id BIGINT NOT NULL
+);

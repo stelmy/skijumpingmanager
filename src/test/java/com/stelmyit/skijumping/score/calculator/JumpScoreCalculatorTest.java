@@ -19,7 +19,7 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class JumpNoteCalculatorTest {
+public class JumpScoreCalculatorTest {
 
     private final DistanceCalculator distanceCalculator = mock(DistanceCalculator.class);
     private final JuryNotesCalculator juryNotesCalculator = mock(JuryNotesCalculator.class);

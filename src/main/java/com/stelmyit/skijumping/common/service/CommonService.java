@@ -19,10 +19,9 @@ public class CommonService<Entity extends BaseEntity,
         this.factory = factory;
     }
 
-    public Long add(DTO dto) {
+    public Entity add(DTO dto) {
         final Entity entity = factory.createEntity(dto);
-        final Entity savedEntity = repository.save(entity);
-        return savedEntity.getId();
+        return repository.save(entity);
     }
 
     public DTO get(Long id) {

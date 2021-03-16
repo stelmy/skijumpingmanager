@@ -24,7 +24,7 @@ public class JumpController {
 
     @RequestMapping(method = POST)
     public Long createJump(@RequestBody JumpDTO jump) {
-        return jumpService.add(jump);
+        return jumpService.add(jump).getId();
     }
 
     @RequestMapping(method = GET)
