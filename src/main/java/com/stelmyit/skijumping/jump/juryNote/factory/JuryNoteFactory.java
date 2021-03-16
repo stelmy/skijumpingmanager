@@ -29,10 +29,12 @@ public class JuryNoteFactory extends CommonFactory<JuryNote, JuryNoteDTO> {
         return null;
     }
 
-    // TODO: implement
     @Override
     public JuryNoteDTO createDTO(JuryNote juryNote) {
-        return null;
+        return JuryNoteDTO.builder()
+            .judgeId(juryNote.getJudge().getId())
+            .note(juryNote.getNote())
+            .build();
     }
 
     @Override

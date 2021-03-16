@@ -10,8 +10,8 @@ INSERT INTO hill (id, name, city_id, kpoint, hill_size) VALUES
 INSERT INTO competition (id, hill_id) VALUES
     (1, 1);
 
-INSERT INTO competition_round (id, number, base_gate, competition_id) VALUES
-    (1, 1, 12, 1);
+INSERT INTO competition_round (id, number, base_gate, type, competition_id) VALUES
+    (1, 1, 12, 'OFFICIAL', 1);
 
 INSERT INTO judge (id, first_name, last_name, country_id) VALUES
     (1, 'Jan', 'Kowalski', 1);

@@ -5,8 +5,10 @@ import com.stelmyit.skijumping.jump.jump.service.JumpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @RestController
@@ -25,4 +27,8 @@ public class JumpController {
         return jumpService.add(jump);
     }
 
+    @RequestMapping(method = GET)
+    public JumpDTO getJump(@RequestParam Long jumpId) {
+        return jumpService.get(jumpId);
+    }
 }

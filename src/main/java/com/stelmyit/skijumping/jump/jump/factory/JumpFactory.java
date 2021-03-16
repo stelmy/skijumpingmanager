@@ -5,6 +5,7 @@ import com.stelmyit.skijumping.competition.competitionRound.model.CompetitionRou
 import com.stelmyit.skijumping.competition.competitionRound.repository.CompetitionRoundRepository;
 import com.stelmyit.skijumping.jump.jump.dto.JumpDTO;
 import com.stelmyit.skijumping.jump.jump.model.Jump;
+import com.stelmyit.skijumping.jump.juryNote.dto.JuryNoteDTO;
 import com.stelmyit.skijumping.jump.juryNote.factory.JuryNoteFactory;
 import com.stelmyit.skijumping.jump.juryNote.model.JuryNote;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,9 +40,15 @@ public class JumpFactory extends CommonFactory<Jump, JumpDTO> {
     }
 
     @Override
-    // TODO: implement
     public JumpDTO createDTO(Jump jump) {
-        return null;
+        final List<JuryNoteDTO> juryNotes = juryNoteFactory.createDtos(jump.getJuryNotes());
+        return JumpDTO.builder()
+            .competitionRoundId(jump.getCompetitionRound().getId())
+            .distance(jump.getDistance())
+            .juryNotes(juryNotes)
+            .gate(jump.getGate())
+            .windSpeed(jump.getWindSpeed())
+            .build();
     }
 
 }

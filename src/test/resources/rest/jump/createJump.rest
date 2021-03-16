@@ -1,5 +1,6 @@
 POST http://localhost:8080/jump
-@Content-Type: application/json
+Content-Type: application/json
+
 {
   "competitionRoundId": 1,
   "distance": 136.5,
@@ -28,18 +29,3 @@ POST http://localhost:8080/jump
   "gate": 10,
   "windSpeed": -1.4
 }
-
-%%%
-
-# Duration: 135 ms
-# URL: http://localhost:8080/jump
-
-# HTTP/1.1 200
-
-@Content-Type: application/json
-@Transfer-Encoding: chunked
-@Date: Tue, 16 Mar 2021 06:27:21 GMT
-@Keep-Alive: timeout=60
-@Connection: keep-alive
-
-1
