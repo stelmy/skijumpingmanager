@@ -1,0 +1,20 @@
+GET http://localhost:8080/city
+%%%
+
+# Duration: 9312 ms
+# URL: http://localhost:8080/city
+
+# HTTP/1.1 200
+
+@Content-Type: application/json
+@Transfer-Encoding: chunked
+@Date: Tue, 16 Mar 2021 16:25:54 GMT
+@Keep-Alive: timeout=60
+@Connection: keep-alive
+
+[
+  {
+    "name": "Zakopane",
+    "countryCode": "POL"
+  }
+]

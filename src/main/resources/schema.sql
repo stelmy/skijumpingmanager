@@ -1,6 +1,7 @@
 CREATE TABLE country (
     id          BIGINT AUTO_INCREMENT PRIMARY KEY,
-    name        VARCHAR(50) NOT NULL
+    name        VARCHAR(50) NOT NULL,
+    code        VARCHAR(3) NOT NULL
 );
 
 CREATE TABLE city (

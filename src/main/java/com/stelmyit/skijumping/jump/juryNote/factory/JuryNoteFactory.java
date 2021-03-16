@@ -29,6 +29,7 @@ public class JuryNoteFactory extends CommonFactory<JuryNote, JuryNoteDTO> {
         return null;
     }
 
+    // TODO: add unit tests
     @Override
     public JuryNoteDTO createDTO(JuryNote juryNote) {
         return JuryNoteDTO.builder()
@@ -37,6 +38,7 @@ public class JuryNoteFactory extends CommonFactory<JuryNote, JuryNoteDTO> {
             .build();
     }
 
+    // TODO: add unit tests
     @Override
     public List<JuryNote> createEntities(List<JuryNoteDTO> juryNoteDTOS) {
         final List<Long> judgeIds = juryNoteDTOS.stream().map(JuryNoteDTO::getJudgeId).collect(toList());

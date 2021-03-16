@@ -26,6 +26,7 @@ public class JumpFactory extends CommonFactory<Jump, JumpDTO> {
         this.competitionRoundRepository = competitionRoundRepository;
     }
 
+    // TODO: add unit tests
     @Override
     public Jump createEntity(JumpDTO jumpDTO) {
         final List<JuryNote> juryNotes = juryNoteFactory.createEntities(jumpDTO.getJuryNotes());
@@ -39,6 +40,7 @@ public class JumpFactory extends CommonFactory<Jump, JumpDTO> {
             .build();
     }
 
+    // TODO: add unit test
     @Override
     public JumpDTO createDTO(Jump jump) {
         final List<JuryNoteDTO> juryNotes = juryNoteFactory.createDtos(jump.getJuryNotes());

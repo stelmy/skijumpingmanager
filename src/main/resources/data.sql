@@ -1,5 +1,6 @@
-INSERT INTO country (id, name) VALUES
-    (1, 'Polska');
+INSERT INTO country (id, name, code) VALUES
+    (1, 'Polska', 'POL'),
+    (2, 'Niemcy', 'GER');
 
 INSERT INTO city (id, country_id, name) VALUES
     (1, 1, 'Zakopane');

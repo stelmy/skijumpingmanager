@@ -1,10 +1,12 @@
 package com.stelmyit.skijumping.common.factory;
 
+import com.stelmyit.skijumping.common.model.BaseEntity;
+
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
-public abstract class CommonFactory<Entity, DTO> {
+public abstract class CommonFactory<Entity extends BaseEntity, DTO> {
     public abstract Entity createEntity(DTO dto);
     public abstract DTO createDTO(Entity entity);
 

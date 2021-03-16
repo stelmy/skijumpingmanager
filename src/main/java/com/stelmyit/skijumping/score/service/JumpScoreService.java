@@ -9,8 +9,6 @@ import com.stelmyit.skijumping.score.repository.JumpScoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class JumpScoreService {
 
@@ -27,15 +25,13 @@ public class JumpScoreService {
         this.jumpScoreCalculator = jumpScoreCalculator;
     }
 
-    public JumpScore addScoreForJump(Jump jump) {
+    public void addScoreForJump(Jump jump) {
         final JumpScore score = jumpScoreCalculator.calculateJumpScore(jump);
-        return jumpScoreRepository.save(score);
+        jumpScoreRepository.save(score);
     }
 
     public JumpScoreDTO getScoreByJumpId(Long jumpId) {
         final JumpScore jumpScore = jumpScoreRepository.getByJumpId(jumpId);
-        List<JumpScore> all = jumpScoreRepository.findAll();
-        System.out.println(all);
         return jumpScoreFactory.createDTO(jumpScore);
     }
 

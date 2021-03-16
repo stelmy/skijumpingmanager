@@ -18,4 +18,6 @@ import javax.persistence.Entity;
 public class Country extends BaseDictionary {
 
     private String name;
+    private String code;
+
 }
