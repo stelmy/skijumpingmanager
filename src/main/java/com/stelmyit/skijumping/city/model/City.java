@@ -7,7 +7,6 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Data
@@ -17,7 +16,6 @@ import javax.persistence.ManyToOne;
 public class City extends BaseDictionary {
 
     @ManyToOne
-    @JoinColumn(name = "country_id")
     private Country country;
 
 }

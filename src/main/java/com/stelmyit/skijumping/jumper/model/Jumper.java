@@ -1,6 +1,6 @@
-package com.stelmyit.skijumping.country.model;
+package com.stelmyit.skijumping.jumper.model;
 
-import com.stelmyit.skijumping.common.model.BaseDictionary;
+import com.stelmyit.skijumping.common.model.Person;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.SuperBuilder;
@@ -11,7 +11,5 @@ import javax.persistence.Entity;
 @EqualsAndHashCode(callSuper = true)
 @SuperBuilder
 @Entity
-public class Country extends BaseDictionary {
-
-    private String name;
+public class Jumper extends Person {
 }

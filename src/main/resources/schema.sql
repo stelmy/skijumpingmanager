@@ -24,6 +24,7 @@ CREATE TABLE competition (
 
 CREATE TABLE competition_round (
     id          BIGINT AUTO_INCREMENT PRIMARY KEY,
+    number      INTEGER NOT NULL,
     base_gate   INTEGER NOT NULL,
     competition_id BIGINT NOT NULL
 );
