@@ -9,6 +9,7 @@ import com.stelmyit.skijumping.score.repository.JumpScoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,18 +32,12 @@ public class CompetitionRoundResultFactory {
     public List<CompetitionRoundResult> createResults(Long competitionRoundId) {
         final List<JumpScore> jumpScores = jumpScoreRepository.getByCompetitionRoundId(competitionRoundId);
         final CompetitionRound competitionRound = competitionRoundRepository.getOne(competitionRoundId);
-        jumpScores.sort((score1, score2) -> score2.getTotalScore().compareTo(score1.getTotalScore()));
-        final List<CompetitionRoundResult> roundResults = new ArrayList<>();
-
-        int position = 1;
-        for (JumpScore jumpScore : jumpScores) {
-            roundResults.add(CompetitionRoundResult.builder()
+        final List<CompetitionRoundResult> roundResults = jumpScores.stream()
+            .map(jumpScore -> CompetitionRoundResult.builder()
                 .jumpScore(jumpScore)
-                .competitionRound(competitionRound)
-                .position(position)
-                .build());
-            position++;
-        }
+                .competitionRound(competitionRound).build())
+            .collect(toList());
+        addPositions(roundResults);
         return roundResults;
     }
 
@@ -58,6 +53,18 @@ public class CompetitionRoundResultFactory {
                 .totalNote(entity.getJumpScore().getTotalScore())
                 .build())
             .collect(toList());
+    }
+
+    private void addPositions(List<CompetitionRoundResult> roundResults) {
+        roundResults.sort((roundResult1, roundResult2) -> {
+            final BigDecimal totalScore1 = roundResult1.getJumpScore().getTotalScore();
+            final BigDecimal totalScore2 = roundResult2.getJumpScore().getTotalScore();
+            return totalScore2.compareTo(totalScore1);
+        });
+
+        for (int i = 0; i < roundResults.size(); i++) {
+            roundResults.get(i).setPosition(i + 1);
+        }
     }
 
 }

@@ -2,31 +2,31 @@ POST http://localhost:8080/jump
 @Content-Type: application/json
 
 {
-  "jumperId": 1,
+  "jumperId": 4,
   "competitionRoundId": 1,
-  "distance": 122.5,
+  "distance": 129.0,
   "juryNotes": [
     { "note": 19.5, "judgeId": 1},
-    { "note": 19.0, "judgeId": 2},
-    { "note": 18.5, "judgeId": 3},
-    { "note": 19.5, "judgeId": 4},
+    { "note": 18.0, "judgeId": 2},
+    { "note": 18.0, "judgeId": 3},
+    { "note": 19.0, "judgeId": 4},
     { "note": 19.0, "judgeId": 5}
   ],
-  "gate": 10,
-  "windSpeed": -1.4
+  "gate": 9,
+  "windSpeed": -2.4
 }
 
 %%%
 
-# Duration: 27 ms
+# Duration: 31 ms
 # URL: http://localhost:8080/jump
 
 # HTTP/1.1 200
 
 @Content-Type: application/json
 @Transfer-Encoding: chunked
-@Date: Wed, 17 Mar 2021 05:34:34 GMT
+@Date: Wed, 17 Mar 2021 06:20:50 GMT
 @Keep-Alive: timeout=60
 @Connection: keep-alive
 
-4
+7
