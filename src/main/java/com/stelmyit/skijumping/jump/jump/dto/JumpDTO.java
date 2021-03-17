@@ -9,7 +9,9 @@ import java.util.List;
 @Data
 @Builder
 public class JumpDTO {
+    private Long jumperId;
     private Long competitionRoundId;
+    private String status;
     private float distance;
     private int gate;
     private float windSpeed;

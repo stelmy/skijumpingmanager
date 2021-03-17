@@ -1,0 +1,48 @@
+GET http://localhost:8080/roundResult?roundId=1
+%%%
+
+# Duration: 53 ms
+# URL: http://localhost:8080/roundResult?roundId=1
+
+# HTTP/1.1 200
+
+@Content-Type: application/json
+@Transfer-Encoding: chunked
+@Date: Wed, 17 Mar 2021 05:34:40 GMT
+@Keep-Alive: timeout=60
+@Connection: keep-alive
+
+[
+  {
+    "position": 1,
+    "firstName": "Dawid",
+    "lastName": "Kubacki",
+    "countryCode": "POL",
+    "distance": 129.5,
+    "totalNote": 126.3
+  },
+  {
+    "position": 2,
+    "firstName": "Piotr",
+    "lastName": "Żyła",
+    "countryCode": "POL",
+    "distance": 124.5,
+    "totalNote": 117.3
+  },
+  {
+    "position": 3,
+    "firstName": "Andrzej",
+    "lastName": "Stękała",
+    "countryCode": "POL",
+    "distance": 122.5,
+    "totalNote": 113.8
+  },
+  {
+    "position": 4,
+    "firstName": "Kamil",
+    "lastName": "Stoch",
+    "countryCode": "POL",
+    "distance": 120.5,
+    "totalNote": 110.2
+  }
+]

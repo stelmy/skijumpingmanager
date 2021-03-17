@@ -38,12 +38,22 @@ CREATE TABLE judge (
     country_id  BIGINT NOT NULL
 );
 
+CREATE TABLE jumper (
+    id          BIGINT AUTO_INCREMENT PRIMARY KEY,
+    first_name  VARCHAR(50) NOT NULL,
+    last_name   VARCHAR(50) NOT NULL,
+    country_id  BIGINT NOT NULL,
+    fis_code    VARCHAR(4) NOT NULL
+);
+
 CREATE TABLE jump (
     id          BIGINT AUTO_INCREMENT PRIMARY KEY,
     competition_round_id BIGINT NOT NULL,
     distance    FLOAT NOT NULL,
     gate        INTEGER NOT NULL,
-    wind_speed  FLOAT NOT NULL
+    wind_speed  FLOAT NOT NULL,
+    jumper_id   BIGINT NOT NULL,
+    status      VARCHAR(15) NOT NULL
 );
 
 CREATE TABLE jury_note (
@@ -71,7 +81,8 @@ CREATE TABLE competition_round_result
 (
     id          BIGINT AUTO_INCREMENT PRIMARY KEY,
     round_id    BIGINT NOT NULL,
-    score_id    BIGINT NOT NULL
+    score_id    BIGINT NOT NULL,
+    position    INTEGER NOT NULL
 );
 
 CREATE TABLE competition_competition_rounds

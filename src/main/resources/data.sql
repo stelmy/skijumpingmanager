@@ -32,3 +32,14 @@ INSERT INTO judge (id, first_name, last_name, country_id) VALUES
 INSERT INTO judge (id, first_name, last_name, country_id) VALUES
     (5, 'Jacek', 'Dąbrowski', 1);
 
+INSERT INTO jumper (id, first_name, last_name, country_id, fis_code) VALUES
+    (1, 'Kamil', 'Stoch', 1, '4321');
+
+INSERT INTO jumper (id, first_name, last_name, country_id, fis_code) VALUES
+    (2, 'Piotr', 'Żyła', 1, '4325');
+
+INSERT INTO jumper (id, first_name, last_name, country_id, fis_code) VALUES
+    (3, 'Dawid', 'Kubacki', 1, '5142');
+
+INSERT INTO jumper (id, first_name, last_name, country_id, fis_code) VALUES
+    (4, 'Andrzej', 'Stękała', 1, '6698');

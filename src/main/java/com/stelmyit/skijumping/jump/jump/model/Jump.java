@@ -14,6 +14,7 @@ import org.hibernate.annotations.Cascade;
 import javax.persistence.*;
 import java.util.List;
 
+import static javax.persistence.EnumType.STRING;
 import static org.hibernate.annotations.CascadeType.ALL;
 
 @Data
@@ -27,6 +28,10 @@ public class Jump extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "jumper_id")
     private Jumper jumper;
+
+    @Enumerated(STRING)
+    @Column(name = "status")
+    private JumpStatus status;
 
     @ManyToOne
     @JoinColumn(name = "competition_round_id")

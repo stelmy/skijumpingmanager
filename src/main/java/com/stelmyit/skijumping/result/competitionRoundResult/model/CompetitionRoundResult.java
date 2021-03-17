@@ -29,4 +29,8 @@ public class CompetitionRoundResult extends BaseEntity {
     @Column(name = "position")
     private int position;
 
+    @OneToOne
+    @JoinColumn(name = "score_id")
+    private JumpScore jumpScore;
+
 }
