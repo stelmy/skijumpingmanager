@@ -2,9 +2,6 @@ package com.stelmyit.skijumping.result.competitionRoundResult.factory;
 
 import com.stelmyit.skijumping.competition.competitionRound.model.CompetitionRound;
 import com.stelmyit.skijumping.competition.competitionRound.repository.CompetitionRoundRepository;
-import com.stelmyit.skijumping.country.model.Country;
-import com.stelmyit.skijumping.jump.jump.model.Jump;
-import com.stelmyit.skijumping.jumper.model.Jumper;
 import com.stelmyit.skijumping.result.competitionRoundResult.dto.CompetitionRoundResultDTO;
 import com.stelmyit.skijumping.result.competitionRoundResult.model.CompetitionRoundResult;
 import com.stelmyit.skijumping.score.model.JumpScore;
@@ -15,7 +12,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.toList;
 
 @Service
@@ -31,6 +27,7 @@ public class CompetitionRoundResultFactory {
         this.jumpScoreRepository = jumpScoreRepository;
     }
 
+    // TODO: add unit test
     public List<CompetitionRoundResult> createResults(Long competitionRoundId) {
         final List<JumpScore> jumpScores = jumpScoreRepository.getByCompetitionRoundId(competitionRoundId);
         final CompetitionRound competitionRound = competitionRoundRepository.getOne(competitionRoundId);
@@ -49,22 +46,17 @@ public class CompetitionRoundResultFactory {
         return roundResults;
     }
 
+    // TODO: add unit test
     public List<CompetitionRoundResultDTO> createDtos(List<CompetitionRoundResult> entities) {
         return entities.stream()
-            .map(entity -> {
-                final JumpScore jumpScore = entity.getJumpScore();
-                final Jump jump = jumpScore.getJump();
-                final Jumper jumper = jump.getJumper();
-                final Country country = jumper.getCountry();
-                return CompetitionRoundResultDTO.builder()
-                    .position(entity.getPosition())
-                    .firstName(jumper.getFirstName())
-                    .lastName(jumper.getLastName())
-                    .countryCode(country.getCode())
-                    .distance(jump.getDistance())
-                    .totalNote(jumpScore.getTotalScore())
-                    .build();
-            })
+            .map(entity -> CompetitionRoundResultDTO.builder()
+                .position(entity.getPosition())
+                .firstName(entity.getJumpScore().getJump().getJumper().getFirstName())
+                .lastName(entity.getJumpScore().getJump().getJumper().getLastName())
+                .countryCode(entity.getJumpScore().getJump().getJumper().getCountry().getCode())
+                .distance(entity.getJumpScore().getJump().getDistance())
+                .totalNote(entity.getJumpScore().getTotalScore())
+                .build())
             .collect(toList());
     }
 
