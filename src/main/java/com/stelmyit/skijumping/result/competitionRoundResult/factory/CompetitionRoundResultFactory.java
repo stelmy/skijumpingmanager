@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static java.util.stream.Collectors.toList;
 
@@ -63,8 +64,19 @@ public class CompetitionRoundResultFactory {
         });
 
         for (int i = 0; i < roundResults.size(); i++) {
-            roundResults.get(i).setPosition(i + 1);
+            final int position = isTheSameAsPrevious(roundResults, i) ? roundResults.get(i - 1).getPosition() : i + 1;
+            roundResults.get(i).setPosition(position);
         }
+    }
+
+    private boolean isTheSameAsPrevious(List<CompetitionRoundResult> roundResults, int index) {
+        if (index == 0) {
+            return false;
+        }
+
+        final BigDecimal currentTotalScore = roundResults.get(index).getJumpScore().getTotalScore();
+        final BigDecimal previousTotalScore = roundResults.get(index - 1).getJumpScore().getTotalScore();
+        return Objects.equals(currentTotalScore, previousTotalScore);
     }
 
 }
